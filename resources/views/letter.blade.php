@@ -185,10 +185,10 @@
 
         @media (max-width: 768px) {
             .mobile-optimized {
-                padding: 0;
-                height: 100vh;
+                padding: 1rem;
+                min-height: 100vh;
                 display: flex;
-                align-items: stretch;
+                align-items: center;
                 justify-content: center;
                 overflow-y: auto;
             }
@@ -196,7 +196,7 @@
             .letter-container {
                 max-height: none;
                 min-height: 100vh;
-                overflow-y: visible;
+                overflow: visible !important;
                 border-radius: 0;
                 width: 100%;
                 margin: 0;
@@ -204,18 +204,14 @@
                 flex-direction: column;
                 border: none !important;
                 box-shadow: none !important;
+                padding-top: 0 !important;
             }
 
-            .mobile-status-bar {
-                background: linear-gradient(to right, rgba(239, 57, 118, 0.05), rgba(239, 57, 118, 0.1)) !important;
-                border-radius: 0 !important;
-                height: 50px !important;
-                display: flex !important;
-                position: sticky !important;
-                top: 0 !important;
-                z-index: 100 !important;
-            }
+        }
 
+
+
+        @media (max-width: 768px) {
             .letter-paper-mobile {
                 margin: 1rem 0;
                 transform: rotate(0deg) !important;
@@ -269,13 +265,13 @@
     </div>
 
     <!-- Main Content Container -->
-    <main class="relative z-10 w-full max-w-md mx-auto mobile-optimized min-h-screen flex items-center justify-center md:items-center">
+    <main class="relative z-10 w-full max-w-md mx-auto mobile-optimized min-h-screen flex items-center justify-center">
         <div
-            class="letter-container bg-background-light dark:bg-background-dark rounded-3xl overflow-hidden flex flex-col border border-gray-200 dark:border-gray-800 shadow-2xl md:max-h-none">
+            class="letter-container bg-background-light dark:bg-background-dark rounded-3xl overflow-visible flex flex-col border border-gray-200 dark:border-gray-800 shadow-2xl md:max-h-none">
 
             <!-- Status Bar -->
             <div
-                class="h-14 w-full flex justify-between items-center px-4 md:px-6 pt-4 pb-2 bg-gradient-to-r from-primary/5 to-primary/10 mobile-status-bar">
+                class="flex h-14 w-full justify-between items-center px-4 md:px-6 pt-4 pb-2 bg-gradient-to-r from-primary/5 to-primary/10">
                 <span
                     class="text-xs font-bold text-gray-500 dark:text-gray-400">{{ now()->setTimezone('Asia/Ho_Chi_Minh')->format('H:i') }}</span>
                 <div class="flex space-x-2">
@@ -287,7 +283,7 @@
 
             <!-- Envelope Background Hint -->
             <div
-                class="absolute inset-0 bg-gradient-to-b from-primary/5 to-primary/10 dark:from-background-dark dark:to-background-dark">
+                class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 dark:from-background-dark dark:to-background-dark">
                 <div
                     class="absolute bottom-0 w-full h-1/4 bg-primary/15 dark:bg-primary/10 rounded-t-3xl backdrop-blur-sm border-t border-white/20">
                 </div>
@@ -409,7 +405,7 @@
             class="bg-paper rounded-2xl p-8 max-w-sm w-full mx-4 relative shadow-2xl border border-primary/20 animate-slide-up">
             <div class="text-center space-y-6">
                 <div class="text-7xl animate-heart-beat">💖</div>
-                <h2 class="text-3xl font-handwriting text-primary">Yay!</h2>
+                <h2 class="text-3xl font-handwriting text-primary">ILY!</h2>
                 <p class="text-gray-600 text-lg leading-relaxed">
                     You just made me the happiest person in the world!
                 </p>
