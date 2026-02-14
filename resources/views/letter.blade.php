@@ -185,19 +185,68 @@
 
         @media (max-width: 768px) {
             .mobile-optimized {
-                padding: 1rem;
+                padding: 0;
+                height: 100vh;
+                display: flex;
+                align-items: stretch;
+                justify-content: center;
+                overflow-y: auto;
             }
 
             .letter-container {
-                max-height: 90vh;
-                overflow-y: auto;
+                max-height: none;
+                min-height: 100vh;
+                overflow-y: visible;
+                border-radius: 0;
+                width: 100%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                border: none !important;
+                box-shadow: none !important;
             }
+
+            .mobile-status-bar {
+                background: linear-gradient(to right, rgba(239, 57, 118, 0.05), rgba(239, 57, 118, 0.1)) !important;
+                border-radius: 0 !important;
+                height: 50px !important;
+                display: flex !important;
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 100 !important;
+            }
+
+            .letter-paper-mobile {
+                margin: 1rem 0;
+                transform: rotate(0deg) !important;
+            }
+
+            .mobile-text-sm {
+                font-size: 0.875rem;
+            }
+
+            .mobile-heart {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+
+        /* Fix scrolling on all devices */
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .scroll-container {
+            height: 100vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
     </style>
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center font-display relative selection:bg-primary selection:text-white">
+    class="bg-background-light dark:bg-background-dark font-display relative selection:bg-primary selection:text-white scroll-container">
 
     <!-- Confetti Container -->
     <div class="fixed inset-0 pointer-events-none z-50" id="confetti-container"></div>
@@ -220,13 +269,13 @@
     </div>
 
     <!-- Main Content Container -->
-    <main class="relative z-10 w-full max-w-md mx-auto mobile-optimized">
+    <main class="relative z-10 w-full max-w-md mx-auto mobile-optimized min-h-screen flex items-center justify-center md:items-center">
         <div
-            class="letter-container bg-background-light dark:bg-background-dark rounded-3xl overflow-hidden flex flex-col border border-gray-200 dark:border-gray-800 shadow-2xl">
+            class="letter-container bg-background-light dark:bg-background-dark rounded-3xl overflow-hidden flex flex-col border border-gray-200 dark:border-gray-800 shadow-2xl md:max-h-none">
 
             <!-- Status Bar -->
             <div
-                class="h-14 w-full flex justify-between items-center px-6 pt-4 pb-2 bg-gradient-to-r from-primary/5 to-primary/10">
+                class="h-14 w-full flex justify-between items-center px-4 md:px-6 pt-4 pb-2 bg-gradient-to-r from-primary/5 to-primary/10 mobile-status-bar">
                 <span
                     class="text-xs font-bold text-gray-500 dark:text-gray-400">{{ now()->setTimezone('Asia/Ho_Chi_Minh')->format('H:i') }}</span>
                 <div class="flex space-x-2">
@@ -245,10 +294,10 @@
             </div>
 
             <!-- Letter Content -->
-            <div class="relative z-10 flex-1 flex flex-col items-center justify-center p-6 w-full">
+            <div class="relative z-10 flex-1 flex flex-col items-center justify-center p-4 md:p-6 w-full">
 
                 <!-- Letter Paper -->
-                <div class="relative w-full bg-paper paper-texture shadow-2xl transform transition-all duration-700 hover:rotate-0 flex flex-col items-center p-6 pb-8 rounded-lg border border-gray-200/50 animate-slide-up"
+                <div class="relative w-full bg-paper paper-texture shadow-2xl transform transition-all duration-700 hover:rotate-0 flex flex-col items-center p-4 md:p-6 pb-6 md:pb-8 rounded-lg border border-gray-200/50 animate-slide-up letter-paper-mobile"
                     style="transform: rotate(1deg);">
 
                     <!-- Decorative tape at top -->
@@ -266,33 +315,33 @@
                     </div>
 
                     <!-- Heart Header -->
-                    <div class="mb-6 mt-6 text-primary animate-heart-beat">
-                        <svg class="w-12 h-12 drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="mb-4 md:mb-6 mt-4 md:mt-6 text-primary animate-heart-beat">
+                        <svg class="w-8 h-8 md:w-12 md:h-12 mobile-heart drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
                         </svg>
                     </div>
 
                     <!-- Main Content -->
-                    <div class="text-center space-y-4 mb-8 w-full">
-                        <p class="text-gray-500 font-display text-sm tracking-widest uppercase mb-3 opacity-70">My
+                    <div class="text-center space-y-3 md:space-y-4 mb-6 md:mb-8 w-full">
+                        <p class="text-gray-500 font-display text-xs md:text-sm tracking-widest uppercase mb-2 md:mb-3 opacity-70 mobile-text-sm">My
                             Dearest,</p>
 
                         <!-- Animated question -->
                         <div class="relative">
                             <h1
-                                class="font-handwriting text-4xl md:text-5xl text-primary handwriting-shadow leading-tight py-2 typewriter-text">
+                                class="font-handwriting text-2xl md:text-4xl lg:text-5xl text-primary handwriting-shadow leading-tight py-2 typewriter-text">
                                 Will you be my Valentine?
                             </h1>
                         </div>
 
-                        <p class="text-gray-400 font-display text-xs mt-4 italic opacity-80">
+                        <p class="text-gray-400 font-display text-xs mt-3 md:mt-4 italic opacity-80">
                             I've been waiting for the perfect moment to ask... 💕
                         </p>
 
                         <!-- Cute message -->
-                        <div class="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
-                            <p class="text-sm text-gray-600 italic leading-relaxed">
+                        <div class="mt-4 md:mt-6 p-3 md:p-4 bg-primary/5 rounded-lg border border-primary/10">
+                            <p class="text-xs md:text-sm text-gray-600 italic leading-relaxed">
                                 "Every moment with you feels magical, and I can't imagine celebrating love with anyone
                                 else. You make my heart skip a beat! 🥰"
                             </p>
