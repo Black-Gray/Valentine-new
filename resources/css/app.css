@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    
+    /* Custom color palette for Viet Ha - exact colors from original */
+    --color-primary: #B8860B;
+    --color-secondary: #4A2C2A;
+    --color-primary-hover: #9a7309;
+}
